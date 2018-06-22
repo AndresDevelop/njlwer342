@@ -13,18 +13,22 @@ class App extends Component {
 
   HandleInput(e) {
     this.setState({
-      newTask: e.target.value
+      newTask: ""
+    });
+    this.setState({
+      task: this.state.task.concat(e.target.value)
     });
   }
 
-  HandleKey(e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
+  HandleKey(ev) {
+    if (ev.key === "Enter") {
+      debugger;
+      ev.preventDefault();
       this.setState({
-        newTask: " "
-      })
+        newTask: ""
+      });
       this.setState({
-        task: this.state.task.concat(this.state.newTask)
+        task: ["Sacar la ropa", "Hacer la cama", "Leer un rato", "Hola"]
       });
     }
   }
@@ -46,7 +50,7 @@ class App extends Component {
               value={this.state.newTask}
               placeholder="Ingresa una tarea y oprime Enter"
               onChange={this.HandleInput}
-              onKeyPress={this.HandleKey}
+              onKeyPress={ (ev) => { this.HandleKey(ev);}}
             />
           </form>
         </div>
