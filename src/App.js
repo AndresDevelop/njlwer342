@@ -13,24 +13,16 @@ class App extends Component {
 
   HandleInput(e) {
     this.setState({
-      newTask: ""
-    });
-    this.setState({
-      task: this.state.task.concat(e.target.value)
+      newTask: e.target.value
     });
   }
 
   HandleKey(ev) {
-    if (ev.key === "Enter") {
-      debugger;
-      ev.preventDefault();
-      this.setState({
-        newTask: ""
-      });
-      this.setState({
-        task: ["Sacar la ropa", "Hacer la cama", "Leer un rato", "Hola"]
-      });
-    }
+    ev.preventDefault();
+    this.setState({
+      task: this.state.task.concat(this.state.newTask),
+      newTask: ""
+    });
   }
 
   render() {
@@ -38,19 +30,19 @@ class App extends Component {
       <div className="wrapper">
         <div className="list">
           <h3>Por hacer:</h3>
+          <h2>Cosas</h2>
           <ul className="todo">
             {this.state.task.map((tasks, index) => (
               <li key={index}>{tasks}</li>
             ))}
           </ul>
-          <form>
+          <form onSubmit={this.HandleKey}>
             <input
               type="text"
               id="new-task"
               value={this.state.newTask}
               placeholder="Ingresa una tarea y oprime Enter"
               onChange={this.HandleInput}
-              onKeyPress={ (ev) => { this.HandleKey(ev);}}
             />
           </form>
         </div>
