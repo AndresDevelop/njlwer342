@@ -41,7 +41,7 @@ class App extends Component {
               type="text"
               id="new-task"
               value={this.state.newTask}
-              placeholder="Ingresa una tarea y oprime Enter"
+              placeholder="Ingresa una tarea y Globant"
               onChange={this.HandleInput}
             />
           </form>
